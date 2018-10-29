@@ -100,48 +100,17 @@ class SubmarinBust {
 
 }
 
-/* $submarinList = array();
- * 
- * // Grid（マス目）を初期化する。
- * GameHelper::initGrid();
- * 
- * $sub1 = makeSubmarin(new Submarin());
- * // echo "sub1:" . $sub1->getName(), "\n";
- * $sub2 = makeSubmarin(new Submarin());
- * // echo "sub2:" . $sub2->getName(), "\n";
- * $sub3 = makeSubmarin(new Submarin());
- * //echo "sub3:" . $sub3->getName(), "\n";
- * 
- * array_push($submarinList, $sub1);
- * array_push($submarinList, $sub2);
- * array_push($submarinList, $sub3);
- * 
- * // openLocation();
- * 
- * $numOfGuess = 0;*/
 
-$game = new SubmarinBust();
+/* $game = new SubmarinBust();
+ * 
+ * echo $game->gameStart(), "\n";
+ * 
+ * while (!empty($game->getSubmarinList())) {
+ *     echo "A1 〜 G7 までのセルを指定 > ";
+ *     $myGuess = trim(fgets(STDIN));
+ *     $result = $game->checkUserGuess($myGuess);
+ *     echo $result, "\n";
+ * }
+ * 
+ * echo $game->gameEnd(), "\n";*/
 
-echo $game->gameStart(), "\n";
-
-while (!empty($game->getSubmarinList())) {
-    echo "A1 〜 G7 までのセルを指定 > ";
-    $myGuess = trim(fgets(STDIN));
-    $result = $game->checkUserGuess($myGuess);
-    echo $result, "\n";
-}
-
-echo $game->gameEnd(), "\n";
-
-/* $myGuess = "B3";
- * $myResult = $sub1->checkYourself($myGuess);
- * echo $myResult, "\n";
- * $myGuess = "d2";
- * $myResult = $sub1->checkYourself($myGuess);
- * echo $myResult, "\n";
- * $myGuess = "c2";
- * $myResult = $sub1->checkYourself($myGuess);
- * echo $myResult, "\n";
- * $myGuess = "b2";
- * $myResult = $sub1->checkYourself($myGuess);
- * echo $myResult, "\n";*/
