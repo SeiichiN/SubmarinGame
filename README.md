@@ -1,2 +1,2 @@
-# SubmarinGame
-Submarin Bust Game
+# SubmarinGameJS
+Submarin Bust Game with JavaScript

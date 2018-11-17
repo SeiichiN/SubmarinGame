@@ -1,36 +1,34 @@
-<?php
-require_once("SubmarinBust.php");
-
-$game = new SubmarinBust();
-
-$startMsg = $game->gameStart();
-
-$endMsg = $game->gameEnd();
-
-$myGuess = $_POST[cell];
-
-if (!empty($game->getSubmarinList())) {
-    $result = $game->checkUserGuess($myGuess);
-}
-
-?>
-
 <!doctype html>
 <html lang="ja">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>潜水艦ゲーム</title>
+        <link rel="stylesheet" href="submarin.css">
+        <script src="submarinGame.js"></script>
     </head>
     <body>
         <div id="wrap">
+			<aside class="des">
+                <header class="clearfix">
+                    <img id="close-des" src="close.gif" alt="close">
+                    <h1>あそびかた</h1>
+                </header>
+				<p>この海域には、敵潜水艦が4隻潜んでいます。<br>
+				潜水艦は、1隻で3つのセルを占有しています。<br>
+				あなたに課せられた任務は、敵潜水艦を全隻撃沈することです。<br>
+				49個の各セルをマウス（指）でクリックすることで、敵潜水艦を攻撃できます。
+				もし、20回以下の攻撃で任務を完了することができれば、優秀といえます。<br>
+				さあ、頑張ってください。</p>
+			</aside>
             <header>
                 <h1>潜水艦ゲーム</h1>
             </header>
             <article>
-
+                <button id="howto-btn">あそびかた</button>
                 <table>
                     <tr>
-                        <td>/</td>
+                        <th></th>
                         <th>A</th>
                         <th>B</th>
                         <th>C</th>
@@ -39,84 +37,24 @@ if (!empty($game->getSubmarinList())) {
                         <th>F</th>
                         <th>G</th>
                     </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                    <tr>
-                        <th>6</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                    <tr>
-                        <th>7</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                    </tr>
-                </table>
-                <form action="" method="post">
-                    
-                    <p>A1 〜 G7 までのセルを指定 > <input type="text" name="cell"></p>
-                    <p><input type="submit"></p>
-                    <p> <?php echo $result; ?></p>
+                    <?php for ($i = 1; $i <= 7; $i++) { ?>
+                        <tr>
+                            <th><?php echo $i; ?></th>
+                            <?php for ($j = 1; $j <= 7; $j++) {  ?>
+                                <?php $idx = mb_substr("ABCDEFG", ($j-1), 1) . (String)$i; ?>
+                                <td class="select" id="<?php echo $idx; ?>"
+                                onclick="selection('<?php echo $idx; ?>')"></td>
+                            <?php } ?>
+                        </tr>
+                    <?php } ?>
 
-                </form>
+                </table>
+                <section class="score">
+                    <p id="kekka"></p>
+                    <div id="mes1"></div>
+                    <div id="mes2"></div>
+                    <button id="replay">REPLAY</button>
+                </section>
             </article>
             <footer>
                 <small>&copy; 2018 Seiichi Nukayama</small>

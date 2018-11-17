@@ -1,3 +1,7 @@
+*.js~
 *.php~
-*_old.php
-
+*.css~
+*.txt
+*.txt~
+sample2.js
+*.ai
